@@ -1,0 +1,62 @@
+=====Hdfs commands======
+
+hadoop fs -mkdir /user/movies
+
+hadoop fs -put movie.csv /user/movies/
+
+hadoop fs -put rating.csv /user/movies/
+
+
+
+
+
+======hive table==========
+
+create database moviedb
+
+use moviedb
+
+create table if not exists rating(
+user_id bigint,
+movie_id bigint,
+ratings float,
+viewdt bigint
+)
+row format delimited
+fields terminated by ",";
+
+
+create table if not exists movie(
+movie_id bigint,
+moviename String,
+genre String
+)
+row format delimited
+fields terminated by ",";
+
+
+
+=======load data into tables===========
+
+load data inpath "/user/movies/movie.csv"
+into table movie;
+
+load data inpath "/user/movies/rating.csv"
+into table rating;
+
+
+======resultant table=======
+
+create table if not exists TopMovies(
+moviename String,
+genre String,
+ratings float
+)
+row format delimited
+fields terminated by ","
+TBLPROPERTIES("skip.header.line.count"="1");
+
+
+
+
+
