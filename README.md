@@ -7,14 +7,18 @@ The code for hadoop,hive and pyspark can be found
  1. movie.csv
  2. rating.csv
 
-my target in this project was to get the most watched highest rated movies from these two files
+First Ingested the datasets from rdbms to hdfs using sqoop
 
-I have used hive for creating tables and does transformations on that using spark SQL queries 
-and loaded the data into a already created empty hive table
+Created hive table on the top of the datasets .Additionally created an empty table for highest rated movies.
 
-so as a result we have a separate table for the result I wanted
+• Created most watched highest rated movies list .Considering movies only with views >2000 
+Populated the empty table in hive with spark SQL queries
 
-Other way I know to do it is, you can simply load data from  pyspark to hdfs and then create table on top of it.
+• Created partitions on the basis of Alphabets of movies using pyspark transformations on hive tables to create
+different folder for each alphabet
+
+• Created partitions on the basis of Genre of movies using pyspark to create different folder for every genre in
+hdfs 
 
 My project is on GCP dataproc, however it can be done on Linux also.
 
